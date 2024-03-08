@@ -5,6 +5,7 @@ import {
   HttpStatus,
   Inject,
   Injectable,
+  Logger,
   NotFoundException,
 } from '@nestjs/common';
 import { DocumentErrors } from './document-messages.enum';
@@ -12,7 +13,8 @@ import { BufferedFile } from './document.interface';
 
 @Injectable()
 export class MinioService {
-  minioClient: Minio.Client;
+  private minioClient: Minio.Client;
+	private readonly logger = new Logger(MinioService.name);
 
   constructor(
     @Inject(MINIO_MODULE_OPTIONS)
@@ -88,4 +90,13 @@ export class MinioService {
       }
     }
   }
+
+  checkConnection(){
+		this.minioClient.listBuckets().then(()=>{
+			this.logger.log("Successfully connected to minio.")
+		})
+		.catch(error =>{
+			this.logger.error(error)
+		})
+	}
 }

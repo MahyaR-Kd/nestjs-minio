@@ -1,4 +1,4 @@
-import { DynamicModule, Global, Module, Provider } from '@nestjs/common';
+import { DynamicModule, Global, Module, OnModuleInit, Provider } from '@nestjs/common';
 import {
   MINIO_MODULE_OPTIONS,
   MinioModuleAsyncOptions,
@@ -6,6 +6,7 @@ import {
   MinioModuleOptions,
 } from './minio.interface';
 import { MinioService } from './minio.service';
+import { ConfigurableModuleClass } from './minio.module-definition';
 
 @Global()
 @Module({
@@ -13,7 +14,14 @@ import { MinioService } from './minio.service';
   providers: [MinioService],
   exports: [MinioService],
 })
-export class MinioModule {
+export class MinioModule extends ConfigurableModuleClass implements OnModuleInit {
+	constructor(readonly service: MinioService){
+		super();
+	}
+	onModuleInit() {
+		this.service.checkConnection()
+	}
+
   static forRoot(options: MinioModuleOptions): DynamicModule {
     return {
       module: MinioModule,
@@ -70,4 +78,5 @@ export class MinioModule {
       inject: [options.useExisting || options.useClass],
     };
   }
+
 }
