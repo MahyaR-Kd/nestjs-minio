@@ -1,6 +1,6 @@
 {
 	"name": "@mahyar--kd/nestjs-minio",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "Minio object storage with nestjs",
 	"author": "Mahyar Kakavand",
 	"license": "MIT",
