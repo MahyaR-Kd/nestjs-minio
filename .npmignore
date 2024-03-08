@@ -1,0 +1,14 @@
+tsconfig.json
+node_modules/
+src/
+.circleci/*
+.env*
+test/*
+CHANGELOG.md
+LICENSE
+CONTRIBUTING.md
+.all-contributorsrc
+/index.ts
+yarn.lock
+yarn-error.log
+package-lock.json
