@@ -1,0 +1,6 @@
+export enum DocumentErrors {
+  NOT_FOUND = 'document.NOT_FOUND',
+  FILE_NOT_FOUND = 'document.FILE_NOT_FOUND',
+  FILE_SIZE_TO_LARGE = 'document.FILE_SIZE_TO_LARGE',
+  FILE_MIMETYPE_NOT_AVAILABLE = 'document.FILE_MIMETYPE_NOT_AVAILABLE',
+}
