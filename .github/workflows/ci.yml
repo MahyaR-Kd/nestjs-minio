@@ -1,18 +1,17 @@
-name: CI
-on: [push, pull_request]
+on:
+  push:
+    branches: [master]
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
-          node-version: 18.x
-          cache: "pnpm"
-
-      - run:  pnpm install --shamefully-hoist=true --frozen-lockfile
-      - run: pnpm run lint && pnpm run build
+          node-version: "20"
+      - run: npm ci
+      - run: npm test
+      - uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
