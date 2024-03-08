@@ -5,12 +5,10 @@
 
 <p align="center">Minio Module for Nest framework</p>
 
-
 <p align="center">
 <a href="https://www.npmjs.com/package/mahyar--kd/nestjs-minio" target="_blank"><img src="https://img.shields.io/npm/v/@mahyar--kd/nestjs-minio" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@mahyar--kd/nestjs-minio" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@mahyar--kd/nestjs-minio" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/MahyaR-Kd/minio-nestjs/master" alt="CircleCI" /></a>
+<a href="https://www.npmjs.com/@mahyar--kd/nestjs-mini" target="_blank"><img src="https://img.shields.io/npm/l/@mahyar--kd/nestjs-minio" alt="Package License" /></a>
+<a href="https://www.npmjs.com/@mahyar--kd/nestjs-mini" target="_blank"><img src="https://img.shields.io/npm/dm/@mahyar--kd/nestjs-minio" alt="NPM Downloads" /></a>
 
 <p align="center">
 <a href="https://www.buymeacoffee.com/mahyar.kd"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=mahyar.kd&button_colour=FF5F5F&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" /></a>
@@ -18,11 +16,11 @@
 </p>
 
 ## Description
+
 This's a [nest-minio](https://github.com/MahyaR-Kd/minio-nestjs) module for [Nest](https://github.com/nestjs/nest).
 This quickstart guide will show you how to install the client SDK and execute an example JavaScript program. For a complete list of APIs and examples, please take a look at the [JavaScript Client API Reference](https://docs.min.io/docs/javascript-client-api-reference) documentation.
 
 This document assumes that you have a working [nodejs](http://nodejs.org/) setup in place.
-
 
 ## Installation
 
@@ -33,18 +31,16 @@ $ yarn add @mahyar--kd/nestjs-minio
 
 ```
 
-
 ## Initialize MinIO Client
 
 You need five items in order to connect to MinIO object storage server.
 
-
 | Params     | Description |
 | :------- | :------------ |
-| endPoint	 | URL to object storage service. |
+| endPoint  | URL to object storage service. |
 |port| TCP/IP port number. This input is optional. Default value set to ``80`` for HTTP and ``443`` for HTTPs.|
 | accessKey | Access key is like user ID that uniquely identifies your account.   |
-| secretKey	| Secret key is the password to your account.    |
+| secretKey | Secret key is the password to your account.    |
 |useSSL |Set this value to 'true' to enable secure (HTTPS) access |
 
 Provide the credentials for minio module by importing it as :
@@ -76,12 +72,14 @@ import { ConfigService } from '@nestjs/config';
 export class NestMinioClientModule {}
 
 ```
-Then you can use it in the service by make instance it in the service as:
+
+Then you can use it in the service by injecting it in the service as:
 
 ```javascript
 
  constructor(
-   private readonly minioService: MinioService,
+    @Inject(MINIO_CONNECTION)
+    private readonly minioService: MinioService,
 ) {}
 
 ```
